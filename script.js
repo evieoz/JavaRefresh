@@ -111,12 +111,12 @@ document.getElementById('btnClear').addEventListener('click', clearOutput)
 // Student Challenge Section
 // ------------------------------------------
 
-// Challenge 1 
+// Challenge 1 - Change Page Title
 function changeTitle() {
   document.querySelector('h1').textContent = "Welcome to Evie's Page!"
 }
 
-// Challenge 2 
+// Challenge 2 - Change Text Color
 let colorIndex = 0
 const colors = ['red', 'green', 'orange', 'blue']
 
@@ -125,7 +125,7 @@ function changeTextColor() {
   colorIndex = (colorIndex + 1) % colors.length
 }
 
-// Challenge 3 
+// Challenge 3 - Random Background Color
 function changeBackground() {
   const colors = ['pink', 'lightblue', 'lightgreen', 'lavender', 'yellow']
   const random = Math.floor(Math.random() * colors.length)
@@ -133,22 +133,29 @@ function changeBackground() {
   document.getElementById('out').style.backgroundColor = colors[random]
 }
 
-// Challenge 4 
-function doubleNumber() {
-  const input = prompt("Enter a number:")
+// Challenge 4 - Angry Mode
+let angryMode = false
 
-  if (input === null || input.trim() === '' || !Number.isFinite(Number(input))) {
-    render("<p>Invalid number.</p>")
-    return
+function toggleAngryMode() {
+  angryMode = !angryMode
+
+  if (angryMode) {
+    document.body.style.backgroundColor = 'darkred'
+    document.querySelector('h1').textContent = ' ANGRY MODE ACTIVATED'
+    document.getElementById('out').style.backgroundColor = 'red'
+    document.getElementById('out').style.color = 'white'
+    render("<h2>STOP CLICKING MY BUTTONS!!! </h2>")
+  } else {
+    document.body.style.backgroundColor = 'white'
+    document.querySelector('h1').textContent = '🍂 JS Functions Demo'
+    document.getElementById('out').style.backgroundColor = '#f8f9fa'
+    document.getElementById('out').style.color = 'black'
+    render("<p>Okay... I'm calm now. </p>")
   }
-
-  const num = Number(input)
-
-  render(`<p>Doubled number: ${num * 2}</p>`)
 }
 
 // Student Challenge Button Event Listeners
 document.getElementById('btnTitle').addEventListener('click', changeTitle)
 document.getElementById('btnColor').addEventListener('click', changeTextColor)
 document.getElementById('btnBackground').addEventListener('click', changeBackground)
-document.getElementById('btnDouble').addEventListener('click', doubleNumber)
+document.getElementById('btnAngry').addEventListener('click', toggleAngryMode)
